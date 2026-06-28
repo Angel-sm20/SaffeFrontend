@@ -1,70 +1,52 @@
+// =========================
+// CONTROLADORES DE VISTAS
+// =========================
 
-// -----------
-// VISTA LOGIN
-// -----------|
-
+/**
+ * Renderiza la vista de inicio de sesión
+ */
 export const getLogin = (req, res) => {
-
-    res.render("login");
-
+  return res.render("login");
 };
 
-// ----------
-// VISTA MENÚ
-// ----------
-
+/**
+ * Renderiza la vista del menú principal
+ */
 export const getMenu = (req, res) => {
-
-    res.render("menu");
-
+  return res.render("menu");
 };
 
-// ---------------
-// VISTA REGISTRO
-// ---------------
-
+/**
+ * Renderiza la vista de registro
+ */
 export const getRegistrarse = (req, res) => {
-
-    res.render("registrarse");
-
+  return res.render("registrarse");
 };
 
-// --------------
-// VISTA ESCANEO
-// --------------
-
+/**
+ * Renderiza la vista de escaneo
+ */
 export const getEscaneo = (req, res) => {
-
-    res.render("escaneo");
-
+  return res.render("escaneo");
 };
 
-// ----------------
-// DETALLE USUARIO
-// ----------------
-
+/**
+ * Renderiza la vista de detalle del usuario
+ */
 export const getDetalleUsuario = (req, res) => {
-
-    res.render("detalle_usuario");
-
+  return res.render("detalle_usuario");
 };
 
-// ------------------
-// ACCESO AUTORIZADO
-// ------------------
-
+/**
+ * Renderiza la vista de acceso autorizado
+ */
 export const getAccesoAutorizado = (req, res) => {
-
-    res.render("acceso_autorizado");
-
+  return res.render("acceso_autorizado");
 };
 
-// ----------------
-// ACCESO DENEGADO
-// ----------------
-
+/**
+ * Renderiza la vista de acceso denegado
+ */
 export const getAccesoDenegado = (req, res) => {
-
-    res.render("acceso_denegado");
-
+  return res.render("acceso_denegado");
 };

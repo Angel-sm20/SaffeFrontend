@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 localStorage.setItem("token", resultado.token);
 
-                window.location.href = "/menu";
+                window.location.href = "/acceso_autorizado";
 
             } else {
 

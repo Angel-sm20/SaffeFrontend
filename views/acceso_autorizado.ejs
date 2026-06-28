@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceso Autorizado - SAFFE</title>
-    <link rel="stylesheet" href="acceso_autorizado.css">
+    <link rel="stylesheet" href="/css/acceso_Autorizado.css">
 </head>
-
 <body>
     <main class="formulario">
         <header style="text-align:center;">
-            <<img src="/img/logo.png" class="logo" alt="Logo SAFFE">
+            <img src="/img/logo.png" class="logo" alt="Logo SAFFE">
             <h2>SAFFE</h2>
         </header>
 
@@ -24,18 +23,9 @@
             <p><b>Hora ingreso:</b> <span id="hora-ingreso">--:--</span></p>
         </div>
 
-        <a href="detalles_usuario">
-            <button class="boton boton-verde">Ver detalles</button>
-        </a>
-        <a href="/" onclick="localStorage.removeItem('token')">
-            <button class="boton boton-gris">Salir</button>
-        </a>
-
-        <hr> 
-        <footer>
-            2025 SAFFE - Sistema de Control de Acceso
-        </footer>
+        <a href="detalle_usuario.ejs"><button class="boton boton-verde">Ver detalles</button></a>
+        <a href="/" onclick="localStorage.removeItem('token')"><button class="boton boton-gris">Salir</button></a>
     </main>
-    <script src="acceso_autorizado.js"></script>
+    <script src="/js/acceso_autorizado.js"></script>
 </body>
 </html>
