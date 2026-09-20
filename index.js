@@ -6,6 +6,7 @@
 import express from "express";
 
 // Manejo de sesiones
+import "dotenv/config";
 import session from "express-session";
 
 // Rutas del proyecto
@@ -38,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/config.js", (req, res) => {
-    const backendUrl = process.env.BACKEND_URL || "http://localhost:3000";
+    const backendUrl = process.env.BACKEND_URL || "https://saffe-backend.up.railway.app";
     const comprefaceUrl = process.env.COMPREFACE_URL || "http://localhost:8000";
     const comprefaceKey = process.env.COMPREFACE_API_KEY || "";
 

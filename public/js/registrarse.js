@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const apiUrl = window.SAFFE_API_URL || "http://localhost:3000";
+    const apiUrl = window.SAFFE_API_URL || "https://saffe-backend.up.railway.app";
     const form = document.getElementById("form-registro");
 
     form.addEventListener("submit", async (event) => {

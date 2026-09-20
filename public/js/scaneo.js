@@ -5,7 +5,7 @@ const canvas = document.getElementById("foto");
 const ctx = canvas.getContext("2d");
 
 // CONFIGURACIÓN DE TU COMPREFACE LOCAL
-const API_URL = window.SAFFE_API_URL || "http://localhost:3000";
+const API_URL = window.SAFFE_API_URL || "https://saffe-backend.up.railway.app";
 const COMPREFACE_URL = `${window.SAFFE_COMPREFACE_URL || "http://localhost:8000"}/api/v1/recognition/recognize`;
 const API_KEY = window.SAFFE_COMPREFACE_KEY || "";
 

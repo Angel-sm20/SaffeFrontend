@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const apiUrl = window.SAFFE_API_URL || "http://localhost:3000";
+    const apiUrl = window.SAFFE_API_URL || "https://saffe-backend.up.railway.app";
     const nombreEl = document.getElementById("nombre-usuario");
     const rangoEl = document.getElementById("rango-usuario");
     const horaEl = document.getElementById("hora-ingreso");
