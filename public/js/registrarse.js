@@ -1,37 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("form-registro");
-    
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
 
-        // Creamos FormData para incluir el archivo de imagen
-        const formData = new FormData();
-        formData.append("id_militar", document.getElementById("cedula").value);
-        formData.append("nombres", document.getElementById("nombre").value);
-        formData.append("apellidos", document.getElementById("apellidos").value);
-        formData.append("correo", document.getElementById("correo").value);
-        formData.append("password", document.getElementById("password").value);
-        formData.append("rango", document.getElementById("rango").value);
-        formData.append("foto", document.getElementById("foto").files[0]); // El archivo
-        formData.append("fecha_ingreso", new Date().toISOString().split('T')[0]);
-        formData.append("estado", 'Activo');
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const payload = {
+            nombre: document.getElementById("nombre").value.trim(),
+            apellido: document.getElementById("apellidos").value.trim(),
+            documento: document.getElementById("cedula").value.trim(),
+            correo: document.getElementById("correo").value.trim(),
+            contraseña: document.getElementById("password").value,
+            rango: document.getElementById("rango").value
+        };
 
         try {
-            const respuesta = await fetch("http://localhost:3000/api/usuarios-facial", {
+            const respuesta = await fetch("http://localhost:3000/api/usuarios", {
                 method: "POST",
-                body: formData // Ya no enviamos JSON, enviamos el FormData
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
             });
+            const resultado = await respuesta.json();
 
             if (!respuesta.ok) {
-                const errorData = await respuesta.json();
-                throw new Error(errorData.error || errorData.mensaje || "Error al registrar");
+                throw new Error(resultado.error || resultado.mensaje || "Error al registrar");
             }
 
-            alert("¡Registro exitoso con validación facial!");
+            alert("Registro exitoso.");
             form.reset();
         } catch (error) {
-            console.error("Detalle:", error);
-            alert("Error: " + error.message);
+            console.error("Error de registro:", error);
+            alert(`Error: ${error.message}`);
         }
     });
 });

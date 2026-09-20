@@ -5,15 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const temporizador = setInterval(() => {
         segundosRestantes--;
-        btnReintentar.innerHTML = `<img src="reintentar.png" width="22" alt="Icono"> Reintentando en ${segundosRestantes}s...`;
+        btnReintentar.innerHTML = `Reintentando en ${segundosRestantes}s...`;
 
         if (segundosRestantes <= 0) {
             clearInterval(temporizador); 
-            window.location.href = "index.html"; 
+            window.location.href = "/"; // Regresar al login
         }
     }, 1000);
 
     btnReintentar.addEventListener("click", () => {
-        window.location.href = "index.html";
+        window.location.href = "/"; // Regresar al login
     });
 });

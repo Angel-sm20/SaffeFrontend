@@ -3,12 +3,11 @@ import { Router } from "express";
 import {
 
     getLogin,
-    getMenu,
     getRegistrarse,
     getEscaneo,
-    getDetalleUsuario,
     getAccesoAutorizado,
-    getAccesoDenegado
+    getAccesoDenegado,
+    getDetalleUsuario
 
 } from "../controllers/controller.views.js";
 
@@ -20,16 +19,14 @@ const router = Router();
 
 router.get("/", getLogin);
 
-router.get("/menu", getMenu);
-
 router.get("/registrarse", getRegistrarse);
 
 router.get("/escaneo", getEscaneo);
 
-router.get("/detalle_usuario", getDetalleUsuario);
-
 router.get("/acceso_autorizado", getAccesoAutorizado);
 
 router.get("/acceso_denegado", getAccesoDenegado);
+
+router.get("/detalle_usuario", getDetalleUsuario);
 
 export default router;

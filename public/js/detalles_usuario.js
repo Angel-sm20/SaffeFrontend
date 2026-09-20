@@ -1,37 +1,44 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const cuerpoTabla = document.getElementById("cuerpo-tabla");
+    const token = localStorage.getItem("token");
 
-    // Simulamos una base de datos de accesos recientes (Para cumplir Evidencia 2)
-    const historialAccesos = [
-        { usuario: "102345678", hora: "08:15", dia: "13", mes: "05", anio: "2026" },
-        { usuario: "109876543", hora: "09:30", dia: "13", mes: "05", anio: "2026" },
-        { usuario: "Admin_01", hora: "14:45", dia: "12", mes: "05", anio: "2026" },
-        { usuario: "753159842", hora: "16:20", dia: "11", mes: "05", anio: "2026" },
-        { usuario: "Admin_02", hora: "07:05", dia: "10", mes: "05", anio: "2026" }
-    ];
+    if (!token) {
+        window.location.href = "/";
+        return;
+    }
 
-    // Función que lee los datos y crea las filas HTML
-    function cargarTabla() {
-        cuerpoTabla.innerHTML = ""; // Limpiamos la tabla por seguridad
+    try {
+        const respuesta = await fetch("http://localhost:3000/api/historial", {
+            headers: { Authorization: `Bearer ${token}` }
+        });
 
-        if (historialAccesos.length === 0) {
-            cuerpoTabla.innerHTML = "<tr><td colspan='5'>No hay registros de acceso recientes.</td></tr>";
+        if (!respuesta.ok) {
+            const errorData = await respuesta.json();
+            throw new Error(errorData.mensaje || "Error al obtener historial");
+        }
+
+        const historial = await respuesta.json();
+        cuerpoTabla.innerHTML = "";
+
+        if (historial.length === 0) {
+            cuerpoTabla.innerHTML = "<tr><td colspan='6'>No hay registros de acceso aún.</td></tr>";
             return;
         }
 
-        historialAccesos.forEach(acceso => {
+        historial.forEach((acceso) => {
             const fila = document.createElement("tr");
             fila.innerHTML = `
-                <td>${acceso.usuario}</td>
-                <td>${acceso.hora}</td>
-                <td>${acceso.dia}</td>
-                <td>${acceso.mes}</td>
-                <td>${acceso.anio}</td>
+                <td>${acceso.documento || "N/A"}</td>
+                <td>${acceso.nombre || "N/A"} ${acceso.apellido || ""}</td>
+                <td>${acceso.hora || "--:--"}</td>
+                <td>${acceso.dia || "--"}</td>
+                <td>${acceso.mes || "--"}</td>
+                <td>${acceso.anio || "----"}</td>
             `;
             cuerpoTabla.appendChild(fila);
         });
+    } catch (error) {
+        console.error("Error al obtener historial:", error);
+        cuerpoTabla.innerHTML = `<tr><td colspan='6'>Error: ${error.message}</td></tr>`;
     }
-
-    // Ejecutamos la función apenas cargue la página
-    cargarTabla();
 });

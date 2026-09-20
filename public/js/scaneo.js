@@ -112,12 +112,32 @@ boton.addEventListener("click", async () => {
                     </div>
                 `;
 
+                // Registrar acceso en la base de datos
+                const token = localStorage.getItem("token");
+                const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decodificar JWT
+                const documento = decodedToken.documento;
+
+                try {
+                    await fetch("http://localhost:3000/api/accesos", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            documento: documento,
+                            estado: "autorizado"
+                        })
+                    });
+                } catch (error) {
+                    console.error("Error al registrar acceso:", error);
+                }
+
                 // ==========================================
-                //  NUEVO: REDIRECCIÓN AUTOMÁTICA AL PANEL
+                //  REDIRECCIÓN A ACCESO AUTORIZADO
                 // ==========================================
                 setTimeout(() => {
-                    // Cambia "inicio.html" por la página interna a la que deben ingresar
-                    window.location.href = "inicio.html"; 
+                    window.location.href = "/acceso_autorizado"; 
                 }, 2000); // Espera 2 segundos antes de redirigir
 
             } else {
@@ -129,6 +149,32 @@ boton.addEventListener("click", async () => {
                         </span>
                     </div>
                 `;
+
+                // Registrar acceso denegado
+                const token = localStorage.getItem("token");
+                const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decodificar JWT
+                const documento = decodedToken.documento;
+
+                try {
+                    await fetch("http://localhost:3000/api/accesos", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            documento: documento,
+                            estado: "denegado"
+                        })
+                    });
+                } catch (error) {
+                    console.error("Error al registrar acceso denegado:", error);
+                }
+
+                // Redirigir a acceso denegado después de 2 segundos
+                setTimeout(() => {
+                    window.location.href = "/acceso_denegado";
+                }, 2000);
             }
         } else {
             // El servidor procesó la foto pero no encontró a nadie que se le parezca
@@ -140,6 +186,34 @@ boton.addEventListener("click", async () => {
                     </span>
                 </div>
             `;
+
+            // Registrar acceso denegado (rostro no registrado)
+            const token = localStorage.getItem("token");
+            if (token) {
+                const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decodificar JWT
+                const documento = decodedToken.documento;
+
+                try {
+                    await fetch("http://localhost:3000/api/accesos", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            documento: documento,
+                            estado: "rostro_no_registrado"
+                        })
+                    });
+                } catch (error) {
+                    console.error("Error al registrar acceso denegado:", error);
+                }
+            }
+
+            // Redirigir a acceso denegado después de 2 segundos
+            setTimeout(() => {
+                window.location.href = "/acceso_denegado";
+            }, 2000);
         }
 
     } catch (error) {

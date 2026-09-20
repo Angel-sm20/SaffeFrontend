@@ -1,21 +1,11 @@
 
 // -----------
 // VISTA LOGIN
-// -----------|
+// -----------
 
 export const getLogin = (req, res) => {
 
     res.render("login");
-
-};
-
-// ----------
-// VISTA MENÚ
-// ----------
-
-export const getMenu = (req, res) => {
-
-    res.render("menu");
 
 };
 
@@ -39,16 +29,6 @@ export const getEscaneo = (req, res) => {
 
 };
 
-// ----------------
-// DETALLE USUARIO
-// ----------------
-
-export const getDetalleUsuario = (req, res) => {
-
-    res.render("detalle_usuario");
-
-};
-
 // ------------------
 // ACCESO AUTORIZADO
 // ------------------
@@ -66,5 +46,15 @@ export const getAccesoAutorizado = (req, res) => {
 export const getAccesoDenegado = (req, res) => {
 
     res.render("acceso_denegado");
+
+};
+
+// ------------------
+// DETALLE DE USUARIO
+// ------------------
+
+export const getDetalleUsuario = (req, res) => {
+
+    res.render("detalle_usuario");
 
 };
