@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const apiUrl = window.SAFFE_API_URL || "http://localhost:3000";
     const form = document.getElementById("form-registro");
 
     form.addEventListener("submit", async (event) => {
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-            const respuesta = await fetch("http://localhost:3000/api/usuarios", {
+            const respuesta = await fetch(`${apiUrl}/api/usuarios`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload)

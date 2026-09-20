@@ -5,8 +5,9 @@ const canvas = document.getElementById("foto");
 const ctx = canvas.getContext("2d");
 
 // CONFIGURACIÓN DE TU COMPREFACE LOCAL
-const COMPREFACE_URL = "http://localhost:8000/api/v1/recognition/recognize";
-const API_KEY = "397f4718-539c-47d2-a777-9ea595352b70"; // <-- Pega aquí la clave que te dio el panel web
+const API_URL = window.SAFFE_API_URL || "http://localhost:3000";
+const COMPREFACE_URL = `${window.SAFFE_COMPREFACE_URL || "http://localhost:8000"}/api/v1/recognition/recognize`;
+const API_KEY = window.SAFFE_COMPREFACE_KEY || "";
 
 /**
  * Función para encender la cámara web o frontal del celular.
@@ -118,7 +119,7 @@ boton.addEventListener("click", async () => {
                 const documento = decodedToken.documento;
 
                 try {
-                    await fetch("http://localhost:3000/api/accesos", {
+                    await fetch(`${API_URL}/api/accesos`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -156,7 +157,7 @@ boton.addEventListener("click", async () => {
                 const documento = decodedToken.documento;
 
                 try {
-                    await fetch("http://localhost:3000/api/accesos", {
+                    await fetch(`${API_URL}/api/accesos`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -194,7 +195,7 @@ boton.addEventListener("click", async () => {
                 const documento = decodedToken.documento;
 
                 try {
-                    await fetch("http://localhost:3000/api/accesos", {
+                    await fetch(`${API_URL}/api/accesos`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",

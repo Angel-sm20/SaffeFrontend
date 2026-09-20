@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
+    const apiUrl = window.SAFFE_API_URL || "http://localhost:3000";
     const cuerpoTabla = document.getElementById("cuerpo-tabla");
     const token = localStorage.getItem("token");
 
@@ -8,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-        const respuesta = await fetch("http://localhost:3000/api/historial", {
+        const respuesta = await fetch(`${apiUrl}/api/historial`, {
             headers: { Authorization: `Bearer ${token}` }
         });
 
