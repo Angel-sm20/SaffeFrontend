@@ -6,7 +6,6 @@
 import express from "express";
 
 // Manejo de sesiones
-import "dotenv/config";
 import session from "express-session";
 
 // Rutas del proyecto
