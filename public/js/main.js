@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Obtener la URL del backend sin barras inclinadas al final para evitar errores en la ruta
-    let rawUrl = window.SAFFE_API_URL || "https://saffe-proyect.up.railway.app/";
+    let rawUrl = window.SAFFE_API_URL || "https://saffe-backend.up.railway.app";
     const apiUrl = rawUrl.replace(/\/+$/, "");
 
     const loginForm = document.getElementById("loginForm");
