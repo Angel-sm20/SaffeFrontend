@@ -103,7 +103,7 @@ input:focus {
 }
 
 /* ÍCONO PARA USER */
-#user {
+#documento {
     background-image: url("/img/iconoUser.png"); 
     background-repeat: no-repeat;
     background-size: 20px;
