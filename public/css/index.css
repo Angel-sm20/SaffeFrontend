@@ -60,24 +60,41 @@ section {
 }
 
 .mascota-ayudante {
-    position: absolute;
+    position: fixed;
+    z-index: 10;
     top: 50%;
-    right: 16px;
+    right: clamp(12px, 3vw, 36px);
     width: clamp(160px, 18vw, 200px);
     text-align: center;
-    transform: translateY(-50%);
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+}
+
+.mascota-ayudante:active,
+.mascota-ayudante.arrastrando {
+    cursor: grabbing;
+}
+
+.mascota-ayudante:focus-visible {
+    outline: 2px solid #138a3a;
+    outline-offset: 4px;
+    border-radius: 12px;
 }
 
 .mascota-ayudante img {
     display: block;
     width: 100%;
     object-fit: contain;
+    pointer-events: none;
     animation: mascota-saludo 3.5s ease-in-out infinite;
     transform-origin: center bottom;
 }
 
 .mascota-saludo {
     display: inline-block;
+    min-width: 140px;
+    max-width: 190px;
     margin-bottom: 10px;
     padding: 10px 14px;
     border-radius: 16px 16px 16px 4px;
@@ -85,11 +102,21 @@ section {
     color: #0b4d1e;
     font-size: 13px;
     line-height: 1.4;
+    pointer-events: none;
+}
+
+.mascota-saludo.cambiando {
+    animation: saludo-cambia 0.3s ease;
 }
 
 @keyframes mascota-saludo {
     0%, 100% { transform: translateY(0) rotate(-1deg); }
     50% { transform: translateY(-9px) rotate(1deg); }
+}
+
+@keyframes saludo-cambia {
+    from { opacity: 0.7; transform: translateY(2px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* ---------- FORMULARIO ---------- */
@@ -200,12 +227,24 @@ footer {
 
 @media (max-width: 760px) {
     .mascota-ayudante {
-        display: none;
+        top: auto;
+        right: 10px;
+        bottom: 12px;
+        width: clamp(88px, 24vw, 120px);
+    }
+
+    .mascota-saludo {
+        min-width: 0;
+        max-width: 130px;
+        margin-bottom: 5px;
+        padding: 7px 9px;
+        font-size: 11px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .mascota-ayudante img {
+    .mascota-ayudante img,
+    .mascota-saludo.cambiando {
         animation: none;
     }
 }

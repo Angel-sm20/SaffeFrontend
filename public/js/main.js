@@ -1,4 +1,100 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const mascota = document.querySelector(".mascota-ayudante");
+    const saludoMascota = mascota?.querySelector(".mascota-saludo");
+
+    if (mascota && saludoMascota) {
+        const mensajes = [
+            "¡Hola! Estoy aquí para ayudarte",
+            "Ingresa tus credenciales para continuar",
+            "¡Tu seguridad empieza aquí!",
+            "También puedes ingresar con reconocimiento facial",
+            "¡Vamos, estás a un paso de entrar!"
+        ];
+        let mensajeActual = 0;
+        let posicionArrastre = null;
+
+        window.setInterval(() => {
+            mensajeActual = (mensajeActual + 1) % mensajes.length;
+            saludoMascota.textContent = mensajes[mensajeActual];
+            saludoMascota.classList.remove("cambiando");
+            void saludoMascota.offsetWidth;
+            saludoMascota.classList.add("cambiando");
+        }, 12000);
+
+        mascota.addEventListener("pointerdown", (event) => {
+            if (event.button !== 0) {
+                return;
+            }
+
+            const limites = mascota.getBoundingClientRect();
+            posicionArrastre = {
+                offsetX: event.clientX - limites.left,
+                offsetY: event.clientY - limites.top
+            };
+            mascota.classList.add("arrastrando");
+            mascota.setPointerCapture(event.pointerId);
+        });
+
+        mascota.addEventListener("pointermove", (event) => {
+            if (!posicionArrastre) {
+                return;
+            }
+
+            const limites = mascota.getBoundingClientRect();
+            const izquierda = Math.max(
+                0,
+                Math.min(event.clientX - posicionArrastre.offsetX, window.innerWidth - limites.width)
+            );
+            const arriba = Math.max(
+                0,
+                Math.min(event.clientY - posicionArrastre.offsetY, window.innerHeight - limites.height)
+            );
+
+            mascota.style.left = `${izquierda}px`;
+            mascota.style.top = `${arriba}px`;
+            mascota.style.right = "auto";
+            mascota.style.bottom = "auto";
+        });
+
+        const terminarArrastre = () => {
+            posicionArrastre = null;
+            mascota.classList.remove("arrastrando");
+        };
+
+        mascota.addEventListener("pointerup", terminarArrastre);
+        mascota.addEventListener("pointercancel", terminarArrastre);
+
+        mascota.addEventListener("keydown", (event) => {
+            const movimientos = {
+                ArrowUp: [0, -20],
+                ArrowDown: [0, 20],
+                ArrowLeft: [-20, 0],
+                ArrowRight: [20, 0]
+            };
+            const movimiento = movimientos[event.key];
+
+            if (!movimiento) {
+                return;
+            }
+
+            event.preventDefault();
+            const limites = mascota.getBoundingClientRect();
+            const izquierda = Math.max(
+                0,
+                Math.min(limites.left + movimiento[0], window.innerWidth - limites.width)
+            );
+            const arriba = Math.max(
+                0,
+                Math.min(limites.top + movimiento[1], window.innerHeight - limites.height)
+            );
+
+            mascota.style.left = `${izquierda}px`;
+            mascota.style.top = `${arriba}px`;
+            mascota.style.right = "auto";
+            mascota.style.bottom = "auto";
+        });
+    }
+
     // 1. Obtener la URL del backend sin barras inclinadas al final para evitar errores en la ruta
     let rawUrl = window.SAFFE_API_URL || "https://saffe-backend.up.railway.app";
     const apiUrl = rawUrl.replace(/\/+$/, "");

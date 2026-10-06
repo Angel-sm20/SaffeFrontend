@@ -73,9 +73,16 @@
 
     </section>
 
-    <aside class="mascota-ayudante" aria-label="Mascota de SAFFE">
+    <aside
+        class="mascota-ayudante"
+        role="group"
+        tabindex="0"
+        aria-roledescription="mascota movible"
+        aria-label="Mascota de SAFFE. Arrástrala o usa las flechas del teclado para moverla."
+        aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight"
+    >
         <span class="mascota-saludo">¡Hola! Estoy aquí para ayudarte</span>
-        <img src="/img/mascota.png" alt="Mascota de SAFFE saludando">
+        <img src="/img/mascota.png" alt="" draggable="false">
     </aside>
 
     <button
