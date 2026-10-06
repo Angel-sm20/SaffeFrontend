@@ -40,6 +40,7 @@ main {
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
+    position: relative;
 }
 
 section {
@@ -56,6 +57,39 @@ section {
     margin-bottom: 25px;
     font-size: 20px;
     font-weight: 700;
+}
+
+.mascota-ayudante {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    width: clamp(160px, 18vw, 200px);
+    text-align: center;
+    transform: translateY(-50%);
+}
+
+.mascota-ayudante img {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+    animation: mascota-saludo 3.5s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+.mascota-saludo {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 10px 14px;
+    border-radius: 16px 16px 16px 4px;
+    background: #e7f5eb;
+    color: #0b4d1e;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+@keyframes mascota-saludo {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-9px) rotate(1deg); }
 }
 
 /* ---------- FORMULARIO ---------- */
@@ -91,10 +125,33 @@ input {
     border-radius: 6px;
     font-size: 14px;
     outline: none;
-    background-repeat: no-repeat;
-    background-size: 20px;
-    background-position: 12px center;
+    margin-bottom: 0;
+}
+
+.input-icon {
+    position: relative;
+    width: 100%;
     margin-bottom: 15px;
+}
+
+.input-icon input {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.input-icon::before {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 12px;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    content: "";
+    pointer-events: none;
+    transform: translateY(-50%);
 }
 
 input:focus {
@@ -102,20 +159,12 @@ input:focus {
     box-shadow: 0 0 3px #138a3a;
 }
 
-/* ÍCONO PARA USER */
-#documento {
-    background-image: url("/img/iconoUser.png"); 
-    background-repeat: no-repeat;
-    background-size: 20px;
-    background-position: 12px center;
+.input-icon--documento::before {
+    background-image: url("/img/iconoUser.png");
 }
 
-/* ÍCONO PARA PASSWORD */
-#password {
+.input-icon--password::before {
     background-image: url("/img/Candado.png");
-    background-repeat: no-repeat;
-    background-size: 20px;
-    background-position: 12px center;
 }
 
 
@@ -147,4 +196,16 @@ footer {
     padding: 20px 0;
     font-size: 12px;
     color: #555;
+}
+
+@media (max-width: 760px) {
+    .mascota-ayudante {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mascota-ayudante img {
+        animation: none;
+    }
 }
