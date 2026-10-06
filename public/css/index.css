@@ -82,13 +82,31 @@ section {
     border-radius: 12px;
 }
 
-.mascota-ayudante img {
+.mascota-figura {
+    position: relative;
+    display: block;
+    aspect-ratio: 1;
+    width: 100%;
+    animation: mascota-saludo 4.5s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+.mascota-figura img {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
+    height: 100%;
     object-fit: contain;
     pointer-events: none;
-    animation: mascota-saludo 3.5s ease-in-out infinite;
-    transform-origin: center bottom;
+}
+
+.mascota-figura .mascota-parpado {
+    opacity: 0;
+}
+
+.mascota-ayudante.parpadeando .mascota-parpado {
+    animation: parpadeo 360ms ease-in-out both;
 }
 
 .mascota-saludo {
@@ -110,8 +128,13 @@ section {
 }
 
 @keyframes mascota-saludo {
-    0%, 100% { transform: translateY(0) rotate(-1deg); }
-    50% { transform: translateY(-9px) rotate(1deg); }
+    0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+    50% { transform: translateY(-2px) rotate(0.5deg); }
+}
+
+@keyframes parpadeo {
+    0%, 100% { opacity: 0; }
+    32%, 62% { opacity: 1; }
 }
 
 @keyframes saludo-cambia {
@@ -243,8 +266,13 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .mascota-ayudante img,
+    .mascota-figura,
     .mascota-saludo.cambiando {
         animation: none;
+    }
+
+    .mascota-ayudante.parpadeando .mascota-parpado {
+        animation: none;
+        opacity: 0;
     }
 }

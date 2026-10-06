@@ -13,6 +13,23 @@ document.addEventListener("DOMContentLoaded", () => {
         let mensajeActual = 0;
         let posicionArrastre = null;
 
+        if (
+            mascota.querySelector(".mascota-parpado") &&
+            !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+            const programarParpadeo = () => {
+                window.setTimeout(() => {
+                    mascota.classList.add("parpadeando");
+                    window.setTimeout(() => {
+                        mascota.classList.remove("parpadeando");
+                        programarParpadeo();
+                    }, 360);
+                }, 4500 + Math.random() * 2500);
+            };
+
+            programarParpadeo();
+        }
+
         window.setInterval(() => {
             mensajeActual = (mensajeActual + 1) % mensajes.length;
             saludoMascota.textContent = mensajes[mensajeActual];
