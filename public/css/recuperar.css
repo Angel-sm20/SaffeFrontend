@@ -1,0 +1,194 @@
+/* Título superior fuera de la tarjeta */
+.page-title {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* Ajustes del header interno de la tarjeta */
+.recover-card .card-header {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.recover-card .card-header h1 {
+    color: #0b4d1e;
+    font-size: 24px;
+}
+
+.recover-card .card-header h2 {
+    color: #138a3a;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+/* Contenedor relativo para posicionar el botón dentro del input */
+.code-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Icono de sobre personalizado para el input del código */
+.input-icon--mail::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E");
+}
+
+/* Estilo del botón "Enviar código" dentro del input */
+.code-action {
+    position: absolute;
+    right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.code-action .divider {
+    color: #a9a9a9;
+    margin-right: 8px;
+}
+
+.btn-inline {
+    background: transparent;
+    color: #138a3a;
+    border: none;
+    padding: 0;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-inline:hover {
+    background: transparent;
+    text-decoration: underline;
+    color: #0b4d1e;
+}
+
+/* Sobrescribir enlace morado del index.css a verde */
+form .resend-link {
+    display: block;
+    text-align: center;
+    color: #138a3a;
+    text-decoration: underline;
+    font-weight: 600;
+    margin: 5px 0 15px 0;
+}
+
+form .resend-link:hover {
+    color: #0b4d1e;
+}
+
+/* Botón central de confirmar */
+.btn-confirmar {
+    width: max-content;
+    margin: 0 auto;
+    padding: 10px 25px;
+    background-color: #0b4d1e; /* Verde más oscuro como en la imagen */
+    border-radius: 6px;
+}
+
+.btn-confirmar:hover {
+    background-color: #083b16;
+}
+
+/* Footer interno de la tarjeta */
+.card-footer {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 11px;
+    color: #000;
+    font-weight: 600;
+}
+
+.card-footer hr {
+    border: 0;
+    border-top: 1px solid #000;
+    margin-bottom: 15px;
+}
+
+.code-input-wrapper input:disabled {
+    opacity: 0.65;
+}
+
+.form-status {
+    min-height: 1.25em;
+    margin: 12px 0 0;
+    color: #0b4d1e;
+    font-size: 13px;
+    text-align: center;
+}
+
+form .resend-link {
+    display: block;
+    width: fit-content;
+    margin: 8px auto 15px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #138a3a;
+    text-decoration: underline;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.resend-link[hidden] {
+    display: none;
+}
+
+.reset-dialog {
+    width: min(420px, calc(100% - 32px));
+    padding: 24px;
+    border: 0;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgb(0 0 0 / 25%);
+}
+
+.reset-dialog::backdrop {
+    background: rgb(0 0 0 / 55%);
+}
+
+.reset-dialog h2 {
+    margin: 0 0 20px;
+    color: #0b4d1e;
+    font-size: 20px;
+}
+
+.reset-dialog label {
+    display: block;
+    margin: 12px 0 6px;
+}
+
+.reset-dialog input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.dialog-actions button {
+    padding: 9px 12px;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#btnGuardarContrasena {
+    background: #0b4d1e;
+    color: #fff;
+}
+
+.dialog-actions button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}

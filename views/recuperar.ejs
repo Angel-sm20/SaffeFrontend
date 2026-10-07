@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña - SAFFE</title>
+    <!-- Importamos tu CSS base y uno específico para esta vista -->
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/recuperar.css">
+</head>
+<body>
+
+    <h2 id="recover-title" class="page-title">Recuperar contraseña</h2>
+
+    <main>
+        <section aria-labelledby="recover-title" class="recover-card">
+
+            <header class="card-header">
+                <img src="/img/logo.png" alt="Logo SAFFE" width="80">
+                <h1>SAFFE</h1>
+                <h2>Sistema de control de acceso<br>ejército nacional</h2>
+            </header>
+
+            <form id="recoverForm" method="post">
+
+                <label for="documento">Documento</label>
+                <div class="input-icon input-icon--documento">
+                    <input
+                        id="documento"
+                        type="text"
+                        name="documento"
+                        placeholder="Ingresa tu documento"
+                        autocomplete="username"
+                        required>
+                </div>
+
+                <label for="codigo">Código</label>
+                <div class="input-icon input-icon--mail code-input-wrapper">
+                    <input
+                        id="codigo"
+                        type="text"
+                        name="codigo"
+                        placeholder="Ingresa el código de 6 dígitos"
+                        inputmode="numeric"
+                        autocomplete="one-time-code"
+                        maxlength="6"
+                        pattern="[0-9]{6}"
+                        disabled
+                        required>
+
+                    <span class="code-action">
+                        <span class="divider">|</span>
+                        <button type="button" id="btnEnviarCodigo" class="btn-inline">Enviar código</button>
+                    </span>
+                </div>
+
+                <button type="button" id="btnReenviarCodigo" class="resend-link" hidden>
+                    ¿No recibiste el código? Reenviar
+                </button>
+
+                <button type="submit" id="btnConfirmarCodigo" class="btn-confirmar" disabled>
+                    Confirmar Código
+                </button>
+                <p id="recoverStatus" class="form-status" role="status" aria-live="polite"></p>
+            </form>
+
+            <dialog id="resetPasswordDialog" class="reset-dialog" aria-labelledby="resetPasswordTitle">
+                <form id="resetPasswordForm">
+                    <h2 id="resetPasswordTitle">Crear nueva contraseña</h2>
+                    <label for="nuevaContrasena">Nueva contraseña</label>
+                    <input
+                        id="nuevaContrasena"
+                        type="password"
+                        autocomplete="new-password"
+                        maxlength="72"
+                        minlength="8"
+                        required>
+                    <label for="confirmarContrasena">Confirmar contraseña</label>
+                    <input
+                        id="confirmarContrasena"
+                        type="password"
+                        autocomplete="new-password"
+                        maxlength="72"
+                        minlength="8"
+                        required>
+                    <p id="resetStatus" class="form-status" role="status" aria-live="polite"></p>
+                    <div class="dialog-actions">
+                        <button type="button" id="btnCancelarCambio">Cancelar</button>
+                        <button type="submit" id="btnGuardarContrasena">Actualizar contraseña</button>
+                    </div>
+                </form>
+            </dialog>
+
+            <div class="card-footer">
+                <hr>
+                <p>Sistema de Control de Acceso-<br>Ejército Nacional</p>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="/config.js"></script>
+    <script src="/js/recuperar.js"></script>
+</body>
+</html>

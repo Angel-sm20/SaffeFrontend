@@ -1,6 +1,7 @@
 const apiUrl = process.env.BACKEND_URL || "https://saffe-backend.up.railway.app";
 
 export const getLogin = (req, res) => res.render("login", { apiUrl });
+export const getRecuperar = (req, res) => res.render("recuperar", { apiUrl });
 export const getRegistrarse = (req, res) => res.render("registrarse", { apiUrl });
 export const getEscaneo = (req, res) => res.render("escaneo", { apiUrl });
 export const getAccesoAutorizado = (req, res) => res.render("acceso_autorizado", { apiUrl });

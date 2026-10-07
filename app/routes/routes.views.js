@@ -3,6 +3,7 @@ import { Router } from "express";
 import {
 
     getLogin,
+    getRecuperar,
     getRegistrarse,
     getEscaneo,
     getAccesoAutorizado,
@@ -18,6 +19,8 @@ const router = Router();
 // ------
 
 router.get("/", getLogin);
+
+router.get("/recuperar", getRecuperar);
 
 router.get("/registrarse", getRegistrarse);
 
