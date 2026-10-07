@@ -72,9 +72,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 : error.message;
             boton.disabled = false;
         } finally {
-            if (solicitudExitosa && boton === btnReenviarCodigo) {
+            if (solicitudExitosa) {
                 iniciarEsperaReenvio();
-            } else if (!solicitudExitosa) {
+                if (boton === btnEnviarCodigo) {
+                    boton.textContent = "Código enviado";
+                }
+            } else {
                 boton.textContent = boton === btnReenviarCodigo
                     ? "¿No recibiste el código? Reenviar"
                     : "Enviar código";

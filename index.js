@@ -2,6 +2,8 @@
 // IMPORTACIONES
 // --------------
 
+import "./app/config/env.js";
+
 // Framework Express
 import express from "express";
 
