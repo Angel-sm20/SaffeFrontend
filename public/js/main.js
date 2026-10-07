@@ -13,10 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let mensajeActual = 0;
         let posicionArrastre = null;
 
-        if (
-            mascota.querySelector(".mascota-parpado") &&
-            !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ) {
+        if (mascota.querySelector(".mascota-parpado")) {
             const programarParpadeo = () => {
                 window.setTimeout(() => {
                     mascota.classList.add("parpadeando");

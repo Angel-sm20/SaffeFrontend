@@ -272,7 +272,6 @@ footer {
     }
 
     .mascota-ayudante.parpadeando .mascota-parpado {
-        animation: none;
-        opacity: 0;
+        animation: parpadeo 180ms steps(1, end) both;
     }
 }
