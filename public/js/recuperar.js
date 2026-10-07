@@ -50,7 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const respuesta = await fetch(`${apiUrl}/api/recuperacion/codigo`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ documento })
+                body: JSON.stringify({ documento }),
+                signal: AbortSignal.timeout(20000)
             });
             const resultado = await respuesta.json();
 
@@ -66,7 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
             codigoInput.focus();
             solicitudExitosa = true;
         } catch (error) {
-            recoverStatus.textContent = error.message;
+            recoverStatus.textContent = error.name === "TimeoutError"
+                ? "El servidor tardó demasiado en procesar la solicitud. Inténtalo de nuevo."
+                : error.message;
             boton.disabled = false;
         } finally {
             if (solicitudExitosa && boton === btnReenviarCodigo) {
